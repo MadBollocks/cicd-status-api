@@ -29,6 +29,7 @@ function requestHandler(request, response) {
         project: "Student Project Dashboard",
         description: "A simple application delivered through an automated CI/CD pipeline.",
         pipeline: ["GitHub", "Jenkins", "Docker", "Docker Hub", "Kubernetes"],
+        message: "CI/CD deployment updated successfully!",
         version
       })
     );
