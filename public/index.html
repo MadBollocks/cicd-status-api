@@ -1,131 +1,68 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Project Dashboard</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --background: #0b1120;
-        --panel: rgba(19, 31, 56, 0.82);
-        --border: #263b64;
-        --text: #e7efff;
-        --muted: #9aafd3;
-        --accent: #67e8f9;
-        --green: #6ee7b7;
-        --purple: #a78bfa;
-      }
-
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        color: var(--text);
-        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-        background: radial-gradient(circle at top right, #193462 0, var(--background) 52%);
-      }
-      .container { width: min(1080px, calc(100% - 40px)); margin: auto; }
-      header { padding: 72px 0 42px; }
-      .eyebrow {
-        color: var(--accent);
-        font-size: .8rem;
-        font-weight: 800;
-        letter-spacing: .16em;
-        text-transform: uppercase;
-      }
-      h1 { max-width: 720px; margin: 14px 0; font-size: clamp(2.4rem, 6vw, 4.7rem); line-height: 1; }
-      .intro { max-width: 650px; color: var(--muted); font-size: 1.15rem; line-height: 1.7; }
-      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-      .button {
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        color: var(--text);
-        background: var(--panel);
-        padding: 11px 16px;
-        text-decoration: none;
-      }
-      .button.primary { border-color: var(--accent); color: #04131a; background: var(--accent); font-weight: 800; }
-      .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-      .panel { border: 1px solid var(--border); border-radius: 16px; background: var(--panel); padding: 24px; backdrop-filter: blur(12px); }
-      .panel h2 { margin: 0 0 10px; font-size: 1.05rem; }
-      .panel p { color: var(--muted); line-height: 1.6; }
-      .status { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-      .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--green); box-shadow: 0 0 16px var(--green); }
-      .meta { color: var(--muted); font-size: .9rem; }
-      .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 16px 0 58px; }
-      .step { border-top: 3px solid var(--purple); padding-top: 13px; color: var(--muted); font-size: .9rem; }
-      .step strong { display: block; margin-bottom: 5px; color: var(--text); }
-      footer { border-top: 1px solid var(--border); color: var(--muted); padding: 26px 0 40px; margin-top: 58px; font-size: .9rem; }
-      @media (max-width: 700px) {
-        .grid, .pipeline { grid-template-columns: 1fr; }
-        header { padding-top: 44px; }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="container">
-      <header>
-        <div class="eyebrow">Cloud Computing &amp; DevOps • Academic Project</div>
-        <h1>Student Project Dashboard</h1>
-        <p class="intro">
-          A small Node.js application that demonstrates how source code moves
-          from GitHub to a live Kubernetes deployment through an automated CI/CD pipeline.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="/health">View health check</a>
-          <a class="button" href="/api/status">View API response</a>
-        </div>
-      </header>
-
-      <section class="grid" aria-label="Application summary">
-        <article class="panel">
-          <h2>Application status</h2>
-          <div class="status"><span class="dot"></span><span id="status">Checking...</span></div>
-          <p class="meta">Kubernetes uses the health endpoint for readiness and liveness checks.</p>
-        </article>
-        <article class="panel">
-          <h2>Current version</h2>
-          <div class="status" id="version">Loading...</div>
-          <p class="meta">This version is produced by the deployed container.</p>
-        </article>
-        <article class="panel">
-          <h2>Purpose</h2>
-          <div class="status">Reliable delivery</div>
-          <p class="meta">The application keeps the focus on automation, testing, and deployment.</p>
-        </article>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyTrack | Workspace</title>
+  <style>
+    :root{color-scheme:dark;--ink:#e8edf5;--muted:#8d9aaf;--line:#273248;--surface:#151d2c;--surface-2:#1a2536;--canvas:#0d1420;--brand:#8fb7ff;--success:#6ed6a0;--warning:#efbd72;--danger:#ed8c9c}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+    .app{display:grid;grid-template-columns:238px 1fr;min-height:100vh}.sidebar{border-right:1px solid var(--line);padding:25px 16px;background:#101825;display:flex;flex-direction:column}
+    .brand{display:flex;gap:11px;align-items:center;font-size:17px;font-weight:750;padding:0 12px 34px}.mark{display:grid;place-items:center;width:29px;height:29px;border-radius:8px;color:#0c1420;background:var(--brand);font-weight:900}
+    .nav-label{padding:0 12px 8px;color:#58677e;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.nav{display:grid;gap:4px}.nav button{border:0;border-radius:8px;padding:10px 12px;text-align:left;color:var(--muted);background:transparent}.nav button.active,.nav button:hover{color:var(--ink);background:var(--surface-2)}
+    .sidebar-bottom{margin-top:auto;border-top:1px solid var(--line);padding:18px 12px 0;color:var(--muted);font-size:12px}.health{color:var(--success);font-weight:700}.health:before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--success)}
+    main{width:100%;min-width:0;padding:34px clamp(32px,5vw,88px) 60px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:31px}.crumb{color:var(--muted);font-size:12px}.profile{display:flex;align-items:center;gap:10px;color:var(--muted)}.avatar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;color:#122039;background:#b9cdf2;font-weight:800}
+    h1{margin:0;font-size:27px;letter-spacing:-.03em}h2{margin:0;font-size:16px}h3{margin:0;font-size:13px}.subtitle{margin:5px 0 0;color:var(--muted)}
+    .overview{display:flex;justify-content:space-between;align-items:end;margin-bottom:23px}.primary{border:1px solid var(--brand);border-radius:7px;padding:10px 15px;color:#0d1728;background:var(--brand);font-weight:750}.primary:hover{background:#abcaff}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metric,.card{border:1px solid var(--line);border-radius:10px;background:var(--surface)}.metric{padding:16px 18px}.metric-label{color:var(--muted);font-size:12px}.metric-value{margin-top:8px;font-size:25px;font-weight:750}.metric-note{color:var(--muted);font-size:11px}.metric-note.good{color:var(--success)}
+    .grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.8fr);gap:18px}.card{padding:20px}.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.muted{color:var(--muted)}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.control{border:1px solid var(--line);border-radius:7px;color:var(--ink);background:#101826;padding:8px 10px;outline:0}.control:focus{border-color:var(--brand)}.search{flex:1;min-width:180px}.tabs{display:flex;gap:3px;margin-bottom:14px;border-bottom:1px solid var(--line)}.tabs button{border:0;border-bottom:2px solid transparent;padding:8px 12px;color:var(--muted);background:transparent}.tabs button.active{border-bottom-color:var(--brand);color:var(--ink)}
+    .task{display:grid;grid-template-columns:22px 1fr auto auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.task:first-child{border-top:0}.check{width:17px;height:17px;accent-color:var(--success)}.task-title{font-weight:700}.task.done .task-title{color:var(--muted);text-decoration:line-through}.task-meta{margin-top:3px;color:var(--muted);font-size:12px}.badge{border-radius:5px;padding:4px 7px;font-size:10px;font-weight:800}.High{color:#ffc2ca;background:#45242d}.Medium{color:#f5d29a;background:#45371f}.Low{color:#a7e3c2;background:#1b3c31}.icon-btn{border:0;color:var(--muted);background:transparent;padding:5px}.icon-btn:hover{color:var(--ink)}.empty{padding:30px 0;text-align:center;color:var(--muted)}
+    .progress-wrap{display:flex;align-items:center;gap:17px;margin:6px 0 25px}.progress{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--brand) var(--progress),#263247 0)}.progress:after{content:"";position:absolute;width:56px;height:56px;border-radius:50%;background:var(--surface)}.progress strong{z-index:1}.progress-copy{color:var(--muted);font-size:12px}.progress-copy strong{display:block;color:var(--ink);font-size:15px}
+    .upcoming{display:grid;gap:3px}.upcoming-item{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.upcoming-item:last-child{border:0}.upcoming-date{color:var(--warning);font-size:11px;white-space:nowrap}.subject-row{display:grid;gap:8px}.subject-line{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.bar{height:5px;border-radius:5px;background:#263247;overflow:hidden}.bar i{display:block;height:100%;border-radius:5px;background:var(--brand)}
+    .form-grid{display:grid;gap:12px}label{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:650}.two{grid-template-columns:1fr 1fr}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}.secondary{border:1px solid var(--line);border-radius:7px;padding:9px 13px;color:var(--ink);background:transparent}.notice{min-height:17px;color:var(--danger);font-size:12px}
+    .view{display:none}.view.active{display:block}
+    @media(max-width:900px){.app{grid-template-columns:70px 1fr}.sidebar{padding:20px 10px}.brand{padding:0 10px 30px}.brand span,.nav-label,.nav button span,.sidebar-bottom{display:none}.nav button{text-align:center}.grid{grid-template-columns:1fr}main{padding:25px 22px}}
+    @media(max-width:600px){.metrics{grid-template-columns:1fr 1fr}.overview{align-items:start;gap:14px;flex-direction:column}.task{grid-template-columns:22px 1fr auto}.task .badge{grid-column:2}.task .icon-btn{grid-column:3;grid-row:1}.two{grid-template-columns:1fr}.topbar{margin-bottom:24px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="mark">S</span><span>StudyTrack</span></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav">
+        <button class="active" data-view="overview">▦ <span>Overview</span></button>
+        <button data-view="assignments">✓ <span>Assignments</span></button>
+        <button data-view="insights">◒ <span>Insights</span></button>
+      </nav>
+      <div class="nav-label" style="margin-top:25px">System</div>
+      <nav class="nav"><button data-view="settings">⚙ <span>Settings</span></button></nav>
+      <div class="sidebar-bottom"><div class="health">All systems operational</div><div style="margin-top:8px">v<span id="version">1.0.0</span> · Kubernetes</div></div>
+    </aside>
+    <main>
+      <div class="topbar"><div class="crumb">Workspace / <strong id="crumb">Overview</strong></div><div class="profile"><span>Student workspace</span><span class="avatar">V</span></div></div>
+      <section class="view active" id="overview">
+        <div class="overview"><div><h1>Good evening, Varun</h1><p class="subtitle">Here’s a clear view of your academic workload.</p></div><button class="primary" id="new-task">＋ New assignment</button></div>
+        <div class="metrics"><div class="metric"><div class="metric-label">Completion rate</div><div class="metric-value" id="completion">0%</div><div class="metric-note good">Across all assignments</div></div><div class="metric"><div class="metric-label">Due this week</div><div class="metric-value" id="week">0</div><div class="metric-note">Upcoming deadlines</div></div><div class="metric"><div class="metric-label">Needs attention</div><div class="metric-value" id="overdue">0</div><div class="metric-note">Overdue assignments</div></div><div class="metric"><div class="metric-label">Open assignments</div><div class="metric-value" id="pending">0</div><div class="metric-note">Still in progress</div></div></div>
+        <div class="grid"><section class="card"><div class="card-head"><div><h2>Assignment queue</h2><span class="muted" style="font-size:12px">Your current academic workload</span></div><button class="secondary" id="view-all">View all</button></div><div id="overview-tasks"></div></section><aside class="card"><div class="card-head"><h2>Progress</h2><span class="muted">This term</span></div><div class="progress-wrap"><div class="progress" id="progress"><strong id="progress-number">0%</strong></div><div class="progress-copy"><strong>Keep the momentum</strong>Complete assignments to improve your rate.</div></div><h3 style="margin-bottom:13px">Upcoming deadlines</h3><div class="upcoming" id="upcoming"></div></aside></div>
       </section>
-
-      <h2>Delivery pipeline</h2>
-      <section class="pipeline" aria-label="CI/CD pipeline stages">
-        <div class="step"><strong>01 · GitHub</strong>Source control</div>
-        <div class="step"><strong>02 · Jenkins</strong>Build and test</div>
-        <div class="step"><strong>03 · Docker</strong>Package image</div>
-        <div class="step"><strong>04 · Registry</strong>Publish image</div>
-        <div class="step"><strong>05 · Kubernetes</strong>Deploy and verify</div>
-      </section>
-
-      <section class="panel">
-        <h2>How this project works</h2>
-        <p>
-          Jenkins checks out this project, runs the automated tests, builds a Docker image,
-          pushes it to Docker Hub, and deploys the image to Minikube. Kubernetes then checks
-          <code>/health</code> before sending traffic to the application.
-        </p>
-      </section>
+      <section class="view" id="assignments"><div class="overview"><div><h1>Assignments</h1><p class="subtitle">Search, sort and manage everything in one place.</p></div><button class="primary" id="new-task-2">＋ New assignment</button></div><section class="card"><div class="tabs"><button class="active" data-filter="all">All</button><button data-filter="pending">In progress</button><button data-filter="completed">Completed</button></div><div class="toolbar"><input class="control search" id="search" placeholder="Search assignments or subjects"><select class="control" id="subject"><option value="all">All subjects</option></select><select class="control" id="sort"><option value="dueDate">Sort: Due date</option><option value="priority">Sort: Priority</option><option value="title">Sort: Name</option></select></div><div id="task-list"></div></section></section>
+      <section class="view" id="insights"><div class="overview"><div><h1>Insights</h1><p class="subtitle">Understand where your time is going.</p></div></div><div class="grid"><section class="card"><div class="card-head"><h2>Progress by subject</h2></div><div class="subject-row" id="subjects"></div></section><section class="card"><div class="card-head"><h2>Delivery status</h2></div><p class="muted">StudyTrack is deployed as a container and verified through the project pipeline.</p><p class="health">Application online</p><a class="muted" href="/api/status">View deployment status →</a></section></div></section>
+      <section class="view" id="settings"><div class="overview"><div><h1>Settings</h1><p class="subtitle">Workspace preferences</p></div></div><section class="card"><h2>Study preferences</h2><p class="muted">Your workspace is configured for the current academic term.</p><p class="muted">Data is stored in the active application session for this deployment.</p></section></section>
+      <section class="card" id="editor" hidden><div class="card-head"><h2 id="editor-title">Add assignment</h2><button class="icon-btn" id="close-editor">✕</button></div><form class="form-grid" id="task-form"><input type="hidden" name="id"><label>Assignment title<input class="control" name="title" required placeholder="e.g. Finish project report"></label><label>Subject<input class="control" name="subject" required placeholder="e.g. Cloud Computing"></label><div class="form-grid two"><label>Priority<select class="control" name="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><label>Due date<input class="control" type="date" name="dueDate" required></label></div><div class="notice" id="notice"></div><div class="form-actions"><button type="button" class="secondary" id="cancel-editor">Cancel</button><button class="primary">Save assignment</button></div></form></section>
     </main>
-    <footer><div class="container">Built with Node.js • Delivered with Jenkins, Docker and Kubernetes</div></footer>
-    <script>
-      fetch("/health")
-        .then((response) => response.json())
-        .then((data) => {
-          document.getElementById("status").textContent = "Online";
-          document.getElementById("version").textContent = `v${data.version}`;
-        })
-        .catch(() => {
-          document.getElementById("status").textContent = "Unavailable";
-          document.getElementById("version").textContent = "Unknown";
-        });
-    </script>
-  </body>
+  </div>
+  <script>
+    let filter="all", editingId=null;
+    const $=(id)=>document.getElementById(id), escapeHtml=(v)=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+    const api=async(path,options)=>{const r=await fetch(path,options);if(!r.ok)throw new Error((await r.json()).error||"Request failed");return r.status===204?null:r.json()};
+    function taskMarkup(task){return `<article class="task ${task.completed?"done":""}"><input class="check" type="checkbox" ${task.completed?"checked":""} data-complete="${task.id}" aria-label="Toggle ${escapeHtml(task.title)}"><div><div class="task-title">${escapeHtml(task.title)}</div><div class="task-meta">${escapeHtml(task.subject)} · Due ${escapeHtml(task.dueDate)}</div></div><span class="badge ${task.priority}">${task.priority}</span><button class="icon-btn" data-edit="${task.id}" aria-label="Edit ${escapeHtml(task.title)}">Edit</button></article>`}
+    async function refresh(){const params=new URLSearchParams({filter,sort:$("sort")?.value||"dueDate"});if($("search")?.value)params.set("search",$("search").value);if($("subject")?.value)params.set("subject",$("subject").value);const [tasks,stats,analytics,subjects]=await Promise.all([api(`/api/tasks?${params}`),api("/api/stats"),api("/api/analytics"),api("/api/subjects")]);$("completion").textContent=`${stats.completionRate}%`;$("progress-number").textContent=`${stats.completionRate}%`;$("progress").style.setProperty("--progress",`${stats.completionRate}%`);$("pending").textContent=stats.pending;$("overdue").textContent=stats.overdue;$("week").textContent=stats.dueThisWeek;$("version").textContent="1.0.0";$("task-list").innerHTML=tasks.length?tasks.map(taskMarkup).join(""):`<div class="empty">No assignments match these filters.</div>`;$("overview-tasks").innerHTML=tasks.slice(0,4).map(taskMarkup).join("")||`<div class="empty">Your queue is clear.</div>`;$("upcoming").innerHTML=analytics.upcoming.length?analytics.upcoming.map(t=>`<div class="upcoming-item"><span>${escapeHtml(t.title)}</span><span class="upcoming-date">${escapeHtml(t.dueDate)}</span></div>`).join(""):`<span class="muted">Nothing due soon.</span>`;$("subject").innerHTML=`<option value="all">All subjects</option>${subjects.map(s=>`<option ${s===$("subject").value?"selected":""}>${escapeHtml(s)}</option>`).join("")}`;$("subjects").innerHTML=analytics.bySubject.map(s=>`<div><div class="subject-line"><span>${escapeHtml(s.subject)}</span><span>${s.completed}/${s.total} complete</span></div><div class="bar"><i style="width:${s.total?Math.round(s.completed/s.total*100):0}%"></i></div></div>`).join("")}
+    function openEditor(task){editingId=task?.id||null;$("editor").hidden=false;$("editor-title").textContent=task?"Edit assignment":"Add assignment";$("task-form").reset();if(task)Object.entries(task).forEach(([key,value])=>{const field=$("task-form").elements.namedItem(key);if(field)field.value=value});$("editor").scrollIntoView({behavior:"smooth",block:"center"})}
+    document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(b.dataset.view).classList.add("active");$("crumb").textContent=b.textContent.trim();document.querySelectorAll("[data-view]").forEach(n=>n.classList.toggle("active",n===b));});
+    [$("new-task"),$("new-task-2")].forEach(b=>b.onclick=()=>openEditor());$("view-all").onclick=()=>document.querySelector('[data-view="assignments"]').click();$("close-editor").onclick=$("cancel-editor").onclick=()=>{$("editor").hidden=true};
+    document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(n=>n.classList.toggle("active",n===b));refresh()});["search","subject","sort"].forEach(id=>$(id).addEventListener("input",refresh));
+    document.addEventListener("click",async e=>{const id=e.target.dataset.complete;if(id){await api(`/api/tasks/${id}`,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({completed:e.target.checked})});refresh()}if(e.target.dataset.edit){const tasks=await api("/api/tasks");openEditor(tasks.find(t=>t.id===Number(e.target.dataset.edit)))}});$("task-form").onsubmit=async e=>{e.preventDefault();$("notice").textContent="";const data=Object.fromEntries(new FormData(e.target));try{await api(editingId?`/api/tasks/${editingId}`:"/api/tasks",{method:editingId?"PUT":"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});$("editor").hidden=true;refresh()}catch(err){$("notice").textContent=err.message}};refresh().catch(()=>{$("notice").textContent="Unable to load workspace data."});
+  </script>
+</body>
 </html>

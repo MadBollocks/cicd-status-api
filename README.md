@@ -1,8 +1,20 @@
-# Student Project Dashboard
+# StudyTrack – Student Assignment Manager
 
-This is a small, presentable academic web project created to demonstrate a complete CI/CD delivery path. It provides a dashboard at `/`, a JSON status API at `/api/status`, and a health check at `/health`. The dashboard explains the project and shows its live deployment status.
+StudyTrack is a simple student assignment manager created to demonstrate a complete CI/CD delivery path with a useful application at the end. It provides a dashboard at `/`, a REST task API, a JSON status API at `/api/status`, and a health check at `/health`.
 
-The application is intentionally lightweight so it runs reliably on Minikube while still looking like a complete project rather than only a technical test endpoint.
+The dashboard lets students add assignments, set a subject, priority and due date, filter pending or completed work, mark assignments complete, delete assignments, and view total, pending, completed and overdue counts. Tasks are held in memory so the application remains lightweight and reliable on Minikube.
+
+## Application API
+
+- `GET /api/tasks` lists all assignments. Use `?filter=pending` or `?filter=completed` to filter them.
+- `GET /api/tasks?search=...&subject=...&sort=...` supports workspace search, subject filtering, and sorting by `dueDate`, `priority`, or `title`.
+- `POST /api/tasks` creates an assignment with `title`, `subject`, `priority` (`Low`, `Medium`, or `High`) and `dueDate` (`YYYY-MM-DD`).
+- `PATCH /api/tasks/:id` updates completion status with `{ "completed": true }`.
+- `PUT /api/tasks/:id` edits an assignment.
+- `DELETE /api/tasks/:id` removes an assignment.
+- `GET /api/stats` returns total, pending, completed and overdue counts.
+- `GET /api/subjects` returns the subjects currently in use.
+- `GET /api/analytics` returns subject progress and upcoming deadlines for the dashboard.
 
 ## Pipeline stages
 

@@ -1,7 +1,7 @@
 {
   "name": "cicd-status-api",
   "version": "1.0.0",
-  "description": "A minimal academic project used to demonstrate an automated CI/CD pipeline.",
+  "description": "StudyTrack student assignment manager for demonstrating an automated CI/CD pipeline.",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
