@@ -15,7 +15,7 @@ function requestHandler(request, response) {
     response.end(
       JSON.stringify({
         project: "CI/CD Status API",
-        message: "Deployed successfully through Jenkins, Docker and Kubernetes.",
+        message: "CI/CD deployment updated successfully!",
         version
       })
     );
