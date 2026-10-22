@@ -1,6 +1,8 @@
-# CI/CD Status API
+# Student Project Dashboard
 
-This is a small academic project created to demonstrate a complete CI/CD delivery path. It exposes a JSON status page and a health check. The application is intentionally simple so the assessed work is the automation, not application complexity.
+This is a small, presentable academic web project created to demonstrate a complete CI/CD delivery path. It provides a dashboard at `/`, a JSON status API at `/api/status`, and a health check at `/health`. The dashboard explains the project and shows its live deployment status.
+
+The application is intentionally lightweight so it runs reliably on Minikube while still looking like a complete project rather than only a technical test endpoint.
 
 ## Pipeline stages
 
@@ -22,7 +24,7 @@ npm test
 node src/server.js
 ```
 
-Open `http://localhost:8080/` or `http://localhost:8080/health`.
+Open `http://localhost:8080/` for the dashboard, or use `http://localhost:8080/health` and `http://localhost:8080/api/status` for the machine-readable endpoints.
 
 ## Jenkins on AWS setup
 

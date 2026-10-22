@@ -1,21 +1,34 @@
 const http = require("node:http");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const port = Number(process.env.PORT || 8080);
 const version = process.env.APP_VERSION || "1.0.0";
+const dashboard = fs.readFileSync(
+  path.join(__dirname, "..", "public", "index.html"),
+  "utf8"
+);
 
 function requestHandler(request, response) {
+  if (request.url === "/" || request.url === "/index.html") {
+    response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    response.end(dashboard);
+    return;
+  }
+
   if (request.url === "/health") {
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "ok", version }));
     return;
   }
 
-  if (request.url === "/" || request.url === "/api/status") {
+  if (request.url === "/api/status") {
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(
       JSON.stringify({
-        project: "CI/CD Status API",
-        message: "Deployed successfully through Jenkins, Docker and Kubernetes.",
+        project: "Student Project Dashboard",
+        description: "A simple application delivered through an automated CI/CD pipeline.",
+        pipeline: ["GitHub", "Jenkins", "Docker", "Docker Hub", "Kubernetes"],
         version
       })
     );

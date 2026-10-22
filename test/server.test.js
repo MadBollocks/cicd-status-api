@@ -26,6 +26,21 @@ test("health endpoint returns an OK status", async () => {
   assert.equal(JSON.parse(response.body).status, "ok");
 });
 
+test("dashboard returns an HTML page", async () => {
+  const response = await call("/");
+  assert.equal(response.statusCode, 200);
+  assert.match(response.headers["Content-Type"], /text\/html/);
+  assert.match(response.body, /Student Project Dashboard/);
+});
+
+test("status endpoint describes the delivery pipeline", async () => {
+  const response = await call("/api/status");
+  const body = JSON.parse(response.body);
+  assert.equal(response.statusCode, 200);
+  assert.equal(body.project, "Student Project Dashboard");
+  assert.deepEqual(body.pipeline, ["GitHub", "Jenkins", "Docker", "Docker Hub", "Kubernetes"]);
+});
+
 test("unknown routes return 404", async () => {
   const response = await call("/missing");
   assert.equal(response.statusCode, 404);
